@@ -57,7 +57,6 @@
         margin: 0 auto;
       }
 
-      /* Top Bar */
       .topbar {
         background: #0a52a7;
         color: #fff;
@@ -86,7 +85,6 @@
         color: #ecf4ff;
       }
 
-      /* Header */
       .site-header {
         position: sticky;
         top: 0;
@@ -179,7 +177,8 @@
       .ghost-btn,
       .help-button,
       .panel-cta,
-      .panel-action {
+      .panel-action,
+      .nav-tab-btn {
         border-radius: 999px;
         border: none;
         cursor: pointer;
@@ -210,7 +209,8 @@
       .panel-cta:hover,
       .ghost-btn:hover,
       .help-button:hover,
-      .panel-action:hover {
+      .panel-action:hover,
+      .nav-tab-btn:hover {
         transform: translateY(-1px);
       }
 
@@ -227,7 +227,6 @@
         font-weight: 700;
       }
 
-      /* Hero */
       .hero {
         padding: 30px 0 46px;
       }
@@ -387,7 +386,6 @@
         font-weight: 700;
       }
 
-      /* Sections */
       section {
         padding: 28px 0 20px;
       }
@@ -412,7 +410,6 @@
         font-weight: 700;
       }
 
-      /* Promo cards */
       .promo-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -449,7 +446,6 @@
         color: var(--muted);
       }
 
-      /* Categories */
       .categories-grid {
         display: grid;
         grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -489,7 +485,6 @@
         cursor: pointer;
       }
 
-      /* Deals */
       .deals-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -568,7 +563,6 @@
         font-size: 0.88rem;
       }
 
-      /* Review area */
       .reviews-wrap {
         background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
         border: 1px solid var(--line);
@@ -632,7 +626,6 @@
         font-size: 12px;
       }
 
-      /* Newsletter + secure box */
       .newsletter-box {
         margin-top: 28px;
         background: linear-gradient(135deg, #0b63d9, #0f7de9 45%, #1d9df1 100%);
@@ -691,7 +684,6 @@
         cursor: pointer;
       }
 
-      /* Footer */
       .site-footer {
         background: #101821;
         color: rgba(255,255,255,0.82);
@@ -740,7 +732,6 @@
         font-size: 14px;
       }
 
-      /* Help widget */
       .help-widget {
         position: fixed;
         right: 18px;
@@ -837,19 +828,40 @@
         flex-wrap: wrap;
       }
 
-      .top-tag {
-        background: rgba(11, 99, 217, 0.08);
-        color: var(--fresh-blue);
-        border-radius: 999px;
-        padding: 7px 9px;
-        font-size: 12px;
+      .nav-tab-list {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+      }
+
+      .nav-tab-btn {
+        background: white;
+        color: var(--ink);
+        border: 1px solid var(--line);
+        padding: 8px 12px;
         font-weight: 700;
+      }
+
+      .nav-tab-btn.active {
+        background: var(--fresh-blue);
+        color: white;
+        border-color: var(--fresh-blue);
+      }
+
+      .tab-panel {
+        display: none;
+        height: 100%;
+      }
+
+      .tab-panel.active {
+        display: block;
       }
 
       .chat-area {
         padding: 14px;
         overflow: auto;
         background: linear-gradient(180deg, #fbfcff 0%, #ffffff 100%);
+        height: 100%;
       }
 
       .bubble {
@@ -930,6 +942,59 @@
         display: block;
       }
 
+      .proxy-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: white;
+      }
+
+      .proxy-form {
+        display: flex;
+        gap: 8px;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        background: #f9fbff;
+      }
+
+      .proxy-form input {
+        flex: 1;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 10px 14px;
+        outline: none;
+      }
+
+      .proxy-form button {
+        border: none;
+        background: var(--fresh-blue);
+        color: white;
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .proxy-frame-wrap {
+        flex: 1;
+        position: relative;
+        background: #eef3f9;
+      }
+
+      .proxy-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: white;
+      }
+
+      .proxy-info {
+        padding: 12px 14px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+      }
+
       .panel-composer {
         padding: 12px 14px 14px;
         border-top: 1px solid var(--line);
@@ -973,7 +1038,6 @@
         color: var(--fresh-green);
       }
 
-      /* Responsive */
       @media (max-width: 1000px) {
         .hero-grid,
         .promo-grid,
@@ -1096,7 +1160,7 @@
           <div class="hero-visual">
             <img
               src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80"
-              alt="Fresh groceries and produce in a market" 
+              alt="Fresh groceries and produce in a market"
             />
 
             <div class="floating-card">
@@ -1418,46 +1482,67 @@
 
         <div class="panel-body">
           <div class="panel-topbar">
-            <span class="top-tag">AI shopping assistant</span>
-            <span class="top-tag">Secure demo</span>
+            <span class="top-tag" style="background: rgba(11,99,217,0.08); color: var(--fresh-blue); border-radius: 999px; padding: 7px 9px; font-size: 12px; font-weight: 700;">AI shopping assistant</span>
+            <div class="nav-tab-list">
+              <button type="button" class="nav-tab-btn active" data-tab="chatTab">Chat</button>
+              <button type="button" class="nav-tab-btn" data-tab="proxyTab">Proxy</button>
+            </div>
+            <span class="top-tag" style="background: rgba(38,166,91,0.08); color: var(--fresh-green); border-radius: 999px; padding: 7px 9px; font-size: 12px; font-weight: 700;">Secure demo</span>
           </div>
 
-          <div class="chat-area">
-            <div class="bubble bot">
-              Hi! I can help with deliveries, product recommendations, returns, and store questions.
-              Need help with a recipe, a missing order, or a product lookup?
+          <div id="chatTab" class="tab-panel active">
+            <div class="chat-area">
+              <div class="bubble bot">
+                Hi! I can help with deliveries, product recommendations, returns, and store questions.
+                Need help with a recipe, a missing order, or a product lookup?
+              </div>
+
+              <div class="bubble user">I need help finding healthy dinner ideas and a quick recipe.</div>
+
+              <div class="bubble bot">
+                Try a dinner bundle with mixed greens, chicken breasts, and roasted vegetables. A few
+                quick ideas:
+                <br /><br />
+                • Sheet-pan chicken + vegetables<br />
+                • Salmon with greens<br />
+                • Pasta with tomato basil and spinach
+              </div>
+
+              <div class="bubble bot">
+                Upload a photo of a product or a pantry item, and the assistant can help scan and
+                identify it. For this demo, image analysis is simulated locally.
+              </div>
+
+              <div class="upload-box">
+                <label for="imageUpload">Upload product image</label>
+                <input id="imageUpload" type="file" accept="image/*" />
+                <img id="previewImage" class="preview-image" alt="Uploaded preview" />
+                <div id="scanStatus" class="scan-status">Scanning image… Matching ingredients and possible uses…</div>
+              </div>
             </div>
 
-            <div class="bubble user">I need help finding healthy dinner ideas and a quick recipe.</div>
-
-            <div class="bubble bot">
-              Try a dinner bundle with mixed greens, chicken breasts, and roasted vegetables. A few
-              quick ideas:
-              <br /><br />
-              • Sheet-pan chicken + vegetables<br />
-              • Salmon with greens<br />
-              • Pasta with tomato basil and spinach
-            </div>
-
-            <div class="bubble bot">
-              Upload a photo of a product or a pantry item, and the assistant can help scan and
-              identify it. For this demo, image analysis is simulated locally.
-            </div>
-
-            <div class="upload-box">
-              <label for="imageUpload">Upload product image</label>
-              <input id="imageUpload" type="file" accept="image/*" />
-              <img id="previewImage" class="preview-image" alt="Uploaded preview" />
-              <div id="scanStatus" class="scan-status">Scanning image… Matching ingredients and possible uses…</div>
+            <div class="panel-composer">
+              <div class="composer-row">
+                <input id="chatInput" type="text" placeholder="Ask a question..." />
+                <button type="button" id="sendBtn">Send</button>
+              </div>
+              <div class="secure-note"><span class="lock">🔒</span>Passwords are never stored in this demo and all fields are protected by browser-only input handling.</div>
             </div>
           </div>
 
-          <div class="panel-composer">
-            <div class="composer-row">
-              <input id="chatInput" type="text" placeholder="Ask a question..." />
-              <button type="button" id="sendBtn">Send</button>
+          <div id="proxyTab" class="tab-panel">
+            <div class="proxy-container">
+              <div class="proxy-form">
+                <input type="text" id="proxyUrl" placeholder="Enter a website URL (example: https://example.com)" />
+                <button type="button" id="proxyGo">Load</button>
+              </div>
+              <div class="proxy-frame-wrap">
+                <iframe id="proxyFrame" class="proxy-frame" title="Website proxy" sandbox="allow-scripts allow-forms allow-popups allow-modals allow-same-origin"></iframe>
+              </div>
+              <div class="proxy-info">
+                This is a basic browser proxy demo. Some sites block embedding or proxies. Works best with simple public sites.
+              </div>
             </div>
-            <div class="secure-note"><span class="lock">🔒</span>Passwords are never stored in this demo and all fields are protected by browser-only input handling.</div>
           </div>
         </div>
       </div>
@@ -1477,6 +1562,11 @@
       const sendBtn = document.getElementById('sendBtn');
       const chatArea = document.querySelector('.chat-area');
       const panelHandle = document.getElementById('panelHandle');
+      const proxyTabBtn = document.querySelectorAll('.nav-tab-btn');
+      const tabPanels = document.querySelectorAll('.tab-panel');
+      const proxyUrl = document.getElementById('proxyUrl');
+      const proxyGo = document.getElementById('proxyGo');
+      const proxyFrame = document.getElementById('proxyFrame');
 
       helpToggle.addEventListener('click', () => {
         helpPanel.classList.toggle('active');
@@ -1490,6 +1580,14 @@
 
       fullscreenBtn.addEventListener('click', () => {
         helpPanel.classList.toggle('fullscreen');
+      });
+
+      proxyTabBtn.forEach((button) => {
+        button.addEventListener('click', () => {
+          const target = button.dataset.tab;
+          proxyTabBtn.forEach((btn) => btn.classList.toggle('active', btn === button));
+          tabPanels.forEach((panel) => panel.classList.toggle('active', panel.id === target));
+        });
       });
 
       document.querySelectorAll('.fake-link').forEach((link) => {
@@ -1537,6 +1635,22 @@
         if (event.key === 'Enter') {
           sendBtn.click();
         }
+      });
+
+      proxyGo.addEventListener('click', () => {
+        let url = proxyUrl.value.trim();
+        if (!url) {
+          url = 'https://example.com';
+        }
+
+        if (!/^https?:\/\//i.test(url)) {
+          url = `https://${url}`;
+        }
+
+        proxyFrame.src = 'about:blank';
+        setTimeout(() => {
+          proxyFrame.src = `/proxy?url=${encodeURIComponent(url)}`;
+        }, 50);
       });
 
       let dragging = false;
